@@ -48,6 +48,15 @@
             </div>
 
             <div class="field">
+                <label for="sketch">Sketch or photo (optional)</label>
+                <input type="file" id="sketch" name="sketch" accept="image/*" multiple>
+                <p class="field-note">have a drawing or picture of what you want? Take a photo or pick one from your
+                    gallery.</p>
+                <p class="field-note">Nothing you enter is saved or uploaded by this page. Your order and photos only
+                    leave your phone when you tap Send and choose how to send them to me.</p>
+            </div>
+
+            <div class="field">
                 <label for="quantity">Quantity <span class="req">*</span></label>
                 <input type="text" id="quantity" name="quantity" placeholder="e.g. 1, 2, 3..." required>
 
@@ -128,8 +137,10 @@
     </form>
     <div id="successScreen" class="success" hidden>
         <h2>Your order summary is ready</h2>
-        <p>Copy this and send it to me by text or DM.</p>
+        <p>Tap <strong>Send Order</strong>, choose your email app, and send it to <strong>
+                dimporium3d@gmail.com</strong></p>
         <pre id="summaryText"></pre>
+        <button type="button" id="sendBtn">Send Order</button>
         <button type="button" id="copyBtn" class="btn-secondary">Copy Summary</button>
         <button type="button" id="resetBtn" class="btn-secondary">Start a new order</button>
     </div>

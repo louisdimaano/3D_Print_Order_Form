@@ -5,6 +5,8 @@ const copyBtn = document.getElementById("copyBtn");
 const resetBtn = document.getElementById("resetBtn");
 const materialSelect = document.getElementById("material");
 const textStyleSelect = document.getElementById("textStyle");
+const sketchInput = document.getElementById("sketch");
+const sendBtn = document.getElementById("sendBtn");
 
 form.addEventListener("submit", function (event) {
     event.preventDefault();
@@ -12,7 +14,9 @@ form.addEventListener("submit", function (event) {
     const data = Object.fromEntries(new FormData(form));
 
     for (const key in data) {
-        data[key] = data[key].trim();
+        if (typeof data[key] === "string") {
+            data[key] = data[key].trim();
+        }
     }
 
     const lines = [];
@@ -23,6 +27,9 @@ form.addEventListener("submit", function (event) {
 
     if (data.description) {
         lines.push(`Description: ${data.description}`);
+    }
+    if (sketchInput.files.length > 0) {
+        lines.push(`Sketch/photo: ${sketchInput.files.length} attached`)
     }
     if (data.modelLink) {
         lines.push(`Model Link: ${data.modelLink}`);
@@ -46,7 +53,7 @@ form.addEventListener("submit", function (event) {
         lines.push(`Additional Notes: ${data.otherNotes}`);
     }
 
-    const summary = lines.join("\n");
+    const summary = lines.join("\r\n");
 
     summaryText.textContent = summary;
     form.hidden = true;
@@ -69,4 +76,22 @@ resetBtn.addEventListener("click", function () {
     successScreen.hidden = true;
     document.getElementById("modelLink").focus();
 
+});
+
+sendBtn.addEventListener("click", function () {
+    const shareData = {
+        title: "3D Print Order",
+        text: summaryText.textContent,
+    };
+
+    const files = Array.from(sketchInput.files);
+    if (files.length > 0) {
+        shareData.files = files;
+    }
+
+    if (navigator.canShare && navigator.canShare(shareData)) {
+        navigator.share(shareData).catch(function () { });
+    } else {
+        sendBtn.textContent = "Sharing isn't supported here. Use Copy Summary instead."
+    }
 });
