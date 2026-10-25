@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Print Order</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Place an Order | Dim-porium</h1>
+            <p class="subtitle">Fill out the details below and I'll get back to you with a quote and timeline.</p>
+    </div>
+
+
+    </header>
+
+    <div class="notice">
+        <h2>Material</h2>
+        <p>PETG filament is used for a stronger print. If you plan on just displaying the model, I would
+            recommend
+            PLA.</p>
+    </div>
+
+    <div class="notice">
+        <h2>Custom designs</h2>
+        <p>I can deboss/emboss text and design basic shapes. Anything organic or complex will require a 3D model
+            file, so please provide a .stl or .obj for custom designs.</p>
+    </div>
+
+    <form id="orderForm">
+        <div class="card">
+            <h2>Order Details</h2>
+
+            <div class="field">
+                <label for="modelLink">Model Link</label>
+                <input type="url" id="modelLink" name="modelLink" placeholder="https://makerworld.com/...">
+            </div>
+
+            <div class="field">
+                <label for="description">Description or special requests</label>
+                <textarea id="description" name="description"
+                    placeholder="Describe your custom design or any special requirements..."></textarea>
+            </div>
+
+            <div class="field">
+                <label for="quantity">Quantity <span class="req">*</span></label>
+                <input type="text" id="quantity" name="quantity" placeholder="e.g. 1, 2, 3..." required>
+
+            </div>
+        </div>
+        <div class="card">
+            <h2>Color &amp; Material</h2>
+            <div class="row">
+                <div class="field">
+                    <label for="primaryColor">Primary Color <span class="req">*</span></label>
+                    <input type="text" id="primaryColor" name="primaryColor" placeholder="e.g. Black, Army Green..."
+                        required>
+                </div>
+                <div class="field">
+                    <label for="secondaryColor">Secondary Color (if any)</label>
+                    <input type="text" id="secondaryColor" name="secondaryColor" placeholder="e.g. White, None...">
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="material">Material</label>
+                <select id="material" name="material">
+                    <option value="petg">PETG (Standard)</option>
+                    <option value="pla">PLA (Display Pieces)</option>
+                    <option value="silk">Silk (Shiny Finish)</option>
+                    <option value="glow">Glow in the Dark</option>
+                    <option value="other">Other (Specify in Description)</option>
+                </select>
+                <p class="field-note">Specialty filaments may add to the cost.</p>
+            </div>
+
+        </div>
+        <div class="card">
+            <h2>Customize Text</h2>
+
+            <div class="row">
+                <div class="field">
+                    <label for="textStyle">Style</label>
+                    <select id="textStyle" name="textStyle">
+                        <option value="none">None</option>
+                        <option value="emboss">Emboss</option>
+                        <option value="deboss">Deboss</option>
+                    </select>
+                </div>
+
+                <div class="field">
+                    <label for="Placement">Placement</label>
+                    <input type="text" id="Placement" name="Placement" placeholder="e.g. Top Face of the Base">
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="embossText">Emboss/Deboss Text</label>
+                <textarea id="embossText" name="embossText" placeholder="Enter text"></textarea>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Deadline</h2>
+
+            <div class="field">
+                <label for="deadline">Needed by (Optional)</label>
+                <input type="date" id="deadline" name="deadline">
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Anything Else?</h2>
+            <div class="field">
+                <label for="otherNotes">Additional Details (Optional)</label>
+                <textarea id="otherNotes" name="otherNotes"
+                    placeholder="Please provide any additional information or special requests..."></textarea>
+            </div>
+        </div>
+
+
+        <button type="submit">Submit Order</button>
+    </form>
+    <div id="successScreen" class="success" hidden>
+        <h2>Your order summary is ready</h2>
+        <p>Copy this and send it to me by text or DM.</p>
+        <pre id="summaryText"></pre>
+        <button type="button" id="copyBtn" class="btn-secondary">Copy Summary</button>
+        <button type="button" id="resetBtn" class="btn-secondary">Start a new order</button>
+    </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
