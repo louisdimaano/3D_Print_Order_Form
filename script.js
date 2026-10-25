@@ -29,7 +29,7 @@ form.addEventListener("submit", function (event) {
         lines.push(`Description: ${data.description}`);
     }
     if (sketchInput.files.length > 0) {
-        lines.push(`Sketch/photo: ${sketchInput.files.length} attached`)
+        lines.push(`Sketch/photo: ${sketchInput.files.length} attached`);
     }
     if (data.modelLink) {
         lines.push(`Model Link: ${data.modelLink}`);
@@ -80,7 +80,7 @@ resetBtn.addEventListener("click", function () {
 
 sendBtn.addEventListener("click", function () {
     const shareData = {
-        title: "3D Print Order",
+        title: "Dimporium Order",
         text: summaryText.textContent,
     };
 
@@ -92,6 +92,6 @@ sendBtn.addEventListener("click", function () {
     if (navigator.canShare && navigator.canShare(shareData)) {
         navigator.share(shareData).catch(function () { });
     } else {
-        sendBtn.textContent = "Sharing isn't supported here. Use Copy Summary instead."
+        sendBtn.textContent = "Sharing isn't supported here. Use Copy Summary instead.";
     }
 });
